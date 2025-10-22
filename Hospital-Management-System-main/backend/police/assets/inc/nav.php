@@ -1,9 +1,9 @@
 <?php
-    $doc_id = $_SESSION['doc_id'];
-    $doc_number = $_SESSION['doc_number'];
-    $ret="SELECT * FROM  his_docs WHERE doc_id = ? AND doc_number = ?";
+    $pat_id = $_SESSION['pat_id'];
+    $pat_number = $_SESSION['pat_number'];
+    $ret="SELECT * FROM  his_patients WHERE pat_id = ? AND pat_number = ?";
     $stmt= $mysqli->prepare($ret) ;
-    $stmt->bind_param('is',$doc_id, $doc_number);
+    $stmt->bind_param('is',$pat_id, $pat_number);
     $stmt->execute() ;//ok
     $res=$stmt->get_result();
     //$cnt=1;
@@ -14,9 +14,9 @@
         <ul class="list-unstyled topnav-menu float-right mb-0">
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/users/<?php echo $row->doc_dpic;?>" alt="dpic" class="rounded-circle">
+                    <img src="assets/images/users/<?php echo $row->pat_dpic;?>" alt="dpic" class="rounded-circle">
                     <span class="pro-user-name ml-1">
-                        <?php echo $row->doc_fname;?> <?php echo $row->doc_lname;?> <i class="mdi mdi-chevron-down"></i> 
+                        <?php echo $row->pat_fname;?> <?php echo $row->pat_lname;?> <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -26,12 +26,12 @@
                     </div>
 
                     <!-- item-->
-                    <!-- <a href="his_doc_account.php" class="dropdown-item notify-item">
+                    <!-- <a href="his_pat_account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user"></i>
                         <span>My Account</span>
                     </a> -->
 
-                    <a href="his_doc_update-account.php" class="dropdown-item notify-item">
+                    <a href="his_pat_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>Update Account</span>
                     </a>
@@ -40,7 +40,7 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <a href="his_doc_logout_partial.php" class="dropdown-item notify-item">
+                    <a href="his_pat_logout_partial.php" class="dropdown-item notify-item">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
                     </a>

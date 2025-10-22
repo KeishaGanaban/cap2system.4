@@ -4,25 +4,28 @@ include('assets/inc/config.php');
 
 if (isset($_POST['pat_login'])) {
     $pat_number = $_POST['pat_number'];
-    $pat_pwd = sha1(md5($_POST['pat_pwd'])); // still using double hash for compatibility
+    $pat_pwd    = $_POST['pat_pwd'];
 
-    // ✅ FIXED: removed the extra comma before FROM
-    $stmt = $mysqli->prepare("SELECT pat_id, pat_number, pat_pwd FROM his_patients WHERE pat_number=? AND pat_pwd=?");
-    $stmt->bind_param('ss', $pat_number, $pat_pwd);
+    // Prepare and execute query
+    $stmt = $mysqli->prepare("SELECT pat_id, pat_number, pat_pwd FROM his_patients WHERE pat_number=?");
+    $stmt->bind_param('s', $pat_number);
     $stmt->execute();
     $stmt->bind_result($db_pat_id, $db_pat_number, $db_pat_pwd);
     $rs = $stmt->fetch();
 
-    if ($rs) {
+    if ($rs && password_verify($pat_pwd, $db_pat_pwd)) {
+        // Correct password
         $_SESSION['pat_id'] = $db_pat_id;
         $_SESSION['pat_number'] = $db_pat_number;
-        header("location:his_pat_dashboard.php");
+        header("Location: his_pat_account.php");
         exit();
     } else {
+        // Invalid login
         $err = "Access Denied! Please check your credentials.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
