@@ -1,9 +1,9 @@
 <?php
     session_start();
-    unset($_SESSION['doc_id']);
-    unset($_SESSION['doc_number']);
+    unset($_SESSION['pat_id']);
+    unset($_SESSION['pat_number']);
     session_destroy();
 
-    header("Location: his_doc_logout.php");
+    header("Location: his_pat_logout.php");
     exit;
 ?>

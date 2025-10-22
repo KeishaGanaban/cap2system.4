@@ -31,10 +31,10 @@
                         <span>My Account</span>
                     </a> -->
 
-                    <a href="his_pat_update-account.php" class="dropdown-item notify-item">
+                    <!--<a href="his_pat_update-account.php" class="dropdown-item notify-item">
                         <i class="fas fa-user-tag"></i>
                         <span>Update Account</span>
-                    </a>
+                    </a>-->
 
 
                     <div class="dropdown-divider"></div>
